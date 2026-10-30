@@ -10,7 +10,6 @@ import ru.yakimov.clientservice.dto.ClientCreateRequest;
 import ru.yakimov.clientservice.dto.ClientResponse;
 import ru.yakimov.clientservice.dto.ClientUpdateRequest;
 import ru.yakimov.clientservice.entity.Client;
-import ru.yakimov.clientservice.entity.ClientStatus;
 import ru.yakimov.clientservice.exception.ClientNotFoundException;
 import ru.yakimov.clientservice.mapper.ClientMapper;
 import ru.yakimov.clientservice.repository.ClientRepository;
@@ -31,7 +30,6 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     public ClientResponse create(ClientCreateRequest request) {
         Client client = mapper.toEntity(request);
-        client.setStatus(ClientStatus.ACTIVE);
         return mapper.toResponse(repository.save(client));
     }
 

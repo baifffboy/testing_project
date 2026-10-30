@@ -7,11 +7,3 @@ CREATE TABLE client_account (
     modify_dttm TIMESTAMP WITH TIME ZONE NOT NULL,
     CONSTRAINT chk_client_account_status CHECK (status IN ('ACTIVE', 'INACTIVE'))
 );
-
-COMMENT ON TABLE  client_account             IS 'Клиенты компании';
-COMMENT ON COLUMN client_account.id          IS 'Идентификатор';
-COMMENT ON COLUMN client_account.full_name   IS 'ФИО';
-COMMENT ON COLUMN client_account.gender      IS 'Пол';
-COMMENT ON COLUMN client_account.status      IS 'Статус (ACTIVE/INACTIVE)';
-COMMENT ON COLUMN client_account.create_dttm IS 'Дата создания';
-COMMENT ON COLUMN client_account.modify_dttm IS 'Дата обновления';

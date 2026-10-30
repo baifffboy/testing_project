@@ -1,11 +1,15 @@
 package ru.yakimov.clientservice.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "client_account")
+@Getter
+@Setter
 public class Client {
 
     @Id
