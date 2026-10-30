@@ -2,7 +2,7 @@
 
 ## Запуск
 mvn clean package # с тестами
-mvn clean package -DskipTests # без тестов, если нужно быстро собрать JAR
+mvn clean package -DskipTests # без тестов
 
 docker compose up -d --build
 
