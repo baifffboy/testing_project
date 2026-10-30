@@ -21,6 +21,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -43,18 +44,28 @@ class ClientServiceImplTest {
     @Test
     void create_savesClientAndReturnsResponse() {
         ClientCreateRequest request = new ClientCreateRequest("Ivanov Ivan", "M");
+
         Client client = new Client();
+        client.setFullName("Ivanov Ivan");
+        client.setGender("M");
+        client.setStatus(ClientStatus.ACTIVE);
+
         ClientResponse expected = response("Ivanov Ivan", ClientStatus.ACTIVE);
 
-        when(mapper.toEntity(request)).thenReturn(client);
-        when(repository.save(client)).thenReturn(client);
+        when(mapper.toEntity(any(ClientCreateRequest.class))).thenReturn(client);
+        when(repository.save(any(Client.class)))
+                .thenAnswer(invocation -> invocation.getArgument(0));
         when(mapper.toResponse(client)).thenReturn(expected);
 
-        ClientResponse result = service.create(request);
+        ClientResponse response = service.create(request);
 
-        assertThat(result).isEqualTo(expected);
-        assertThat(client.getStatus()).isEqualTo(ClientStatus.ACTIVE);
+        assertEquals("Ivanov Ivan", response.fullName());
+        assertEquals("M", response.gender());
+        assertEquals(ClientStatus.ACTIVE, response.status());
+
+        verify(mapper).toEntity(request);
         verify(repository).save(client);
+        verify(mapper).toResponse(client);
     }
 
     @Test

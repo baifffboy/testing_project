@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import ru.yakimov.clientservice.ClientServiceApplication;
 import ru.yakimov.clientservice.controller.ClientController;
 import ru.yakimov.clientservice.dto.ClientCreateRequest;
 import ru.yakimov.clientservice.dto.ClientResponse;
@@ -26,6 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(ClientController.class)
+@ContextConfiguration(classes = ClientServiceApplication.class)
 class ClientControllerTest {
 
     @Autowired

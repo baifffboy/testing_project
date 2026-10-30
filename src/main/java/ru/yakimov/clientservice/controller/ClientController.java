@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.yakimov.clientservice.dto.ClientCreateRequest;
 import ru.yakimov.clientservice.dto.ClientResponse;
 import ru.yakimov.clientservice.dto.ClientUpdateRequest;
-import ru.yakimov.clientservice.service.impl.ClientServiceImpl;
+import ru.yakimov.clientservice.service.ClientService;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("/api/clients")
 public class ClientController {
 
-    ClientServiceImpl service;
+    ClientService service;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
