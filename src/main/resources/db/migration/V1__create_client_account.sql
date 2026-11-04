@@ -3,7 +3,7 @@ CREATE TABLE client_account (
     full_name   TEXT                     NOT NULL,
     gender      VARCHAR(1),
     status      VARCHAR(20),
-    create_dttm TIMESTAMP WITH TIME ZONE NOT NULL,
-    modify_dttm TIMESTAMP WITH TIME ZONE NOT NULL,
+    create_dttm TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
+    modify_dttm TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
     CONSTRAINT chk_client_account_status CHECK (status IN ('ACTIVE', 'INACTIVE'))
 );
