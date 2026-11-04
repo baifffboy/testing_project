@@ -31,4 +31,14 @@ public class Client {
 
     @Column(name = "modify_dttm", nullable = false)
     private OffsetDateTime modifyDttm;
+
+    @PrePersist
+    @PreUpdate
+    protected void updateTimestamps() {
+        OffsetDateTime now = OffsetDateTime.now();
+        if (this.createDttm == null) {
+            this.createDttm = now;
+        }
+        this.modifyDttm = now;
+    }
 }
